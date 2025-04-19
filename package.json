@@ -1,0 +1,9 @@
+{
+  "name": "@altametrics/root",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "server/*",
+    "client/*"
+  ]
+}
