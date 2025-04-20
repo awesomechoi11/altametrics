@@ -8,6 +8,7 @@ import store from "./lib/store/store.ts";
 import { BrowserRouter, Route, Routes } from "react-router";
 import InvoicesPage from "./pages/invoices/InvoicesPage.tsx";
 import InvoicesDialog from "./components/InvoicesDialog.tsx";
+import DashboardLayout from "./lib/DashboardLayout.tsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -26,11 +27,13 @@ createRoot(document.getElementById("root")!).render(
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<App />} />
-                        <Route path="invoices" element={<InvoicesPage />}>
-                            <Route
-                                path=":invoiceId"
-                                element={<InvoicesDialog />}
-                            />
+                        <Route path="dashboard" element={<DashboardLayout />}>
+                            <Route path="invoices" element={<InvoicesPage />}>
+                                <Route
+                                    path=":invoiceId"
+                                    element={<InvoicesDialog />}
+                                />
+                            </Route>
                         </Route>
                     </Routes>
                 </BrowserRouter>
