@@ -15,7 +15,7 @@ function DashboardNavbar() {
     const location = useLocation();
     console.log(location);
     return (
-        <div className="px-4 pr-8 py-4 border-b border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-900">
+        <div className="px-12 pr-8 py-6 border-b border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-900">
             <div className="flex justify-between items-center">
                 <div className="flex gap-[16px] items-center">
                     <SidebarTrigger />

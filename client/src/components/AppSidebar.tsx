@@ -6,6 +6,7 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
+    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
@@ -45,11 +46,18 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarHeader>
+                        <img
+                            src="https://placehold.co/223x64"
+                            alt="Logo"
+                            className="w-full h-16"
+                        />
+                    </SidebarHeader>
+                    <SidebarGroupLabel>Menu</SidebarGroupLabel>
                     <SidebarGroupContent>
-                        <SidebarMenu>
+                        <SidebarMenu className="flex flex-col gap-2">
                             {items.map((item) => (
-                                <SidebarMenuItem key={item.title}>
+                                <SidebarMenuItem className="" key={item.title}>
                                     <SidebarMenuButton asChild>
                                         <a href={item.url}>
                                             <item.icon />

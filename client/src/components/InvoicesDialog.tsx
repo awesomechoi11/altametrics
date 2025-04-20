@@ -31,7 +31,7 @@ function InvoicesDialog() {
     const { data, isSuccess } = useInvoice(invoiceId);
     const navigate = useNavigate();
     const handleClose = () => {
-        navigate("/invoices");
+        navigate("/dashboard/invoices");
     };
     return (
         <Dialog

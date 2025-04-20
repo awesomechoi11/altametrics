@@ -35,7 +35,7 @@ function ViewInvoiceButton({ invoiceId }: { invoiceId: Invoice["id"] }) {
         <Button
             variant="outline"
             size="sm"
-            onClick={() => navigate(`/invoices/${invoiceId}`)}
+            onClick={() => navigate(`/dashboard/invoices/${invoiceId}`)}
         >
             View
         </Button>
@@ -191,7 +191,7 @@ function InvoicesDatatable({ data }: { data: Invoices }) {
         },
     });
     return (
-        <div className="p-6">
+        <div className="">
             <div className="w-full">
                 <div className="rounded-md border">
                     <Table>
