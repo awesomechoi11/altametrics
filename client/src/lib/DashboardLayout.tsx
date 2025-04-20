@@ -7,9 +7,9 @@ function DashboardLayout() {
     return (
         <SidebarProvider defaultOpen={true}>
             <AppSidebar />
-            <div>
+            <div className="w-full">
                 <DashboardNavbar />
-                <div className="w-screen">
+                <div>
                     <Outlet />
                 </div>
             </div>

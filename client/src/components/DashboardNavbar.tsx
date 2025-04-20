@@ -10,11 +10,12 @@ import { SidebarTrigger } from "./ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Bell, Moon, Settings } from "lucide-react";
 function DashboardNavbar() {
     const location = useLocation();
     console.log(location);
     return (
-        <div className="px-4 py-4">
+        <div className="px-4 pr-8 py-4 border-b border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-900">
             <div className="flex justify-between items-center">
                 <div className="flex gap-[16px] items-center">
                     <SidebarTrigger />
@@ -49,11 +50,17 @@ function DashboardNavbar() {
                         </Breadcrumb>
                     </div>
                 </div>
-                <div className="flex gap-4 items-center max-w-1/2">
+                <div className="flex gap-4 items-center max-w-2/3">
                     <Input type="text" placeholder="Search" />
-                    <Button variant="ghost">Ghost</Button>
-                    <Button variant="ghost">Ghost</Button>
-                    <Button variant="ghost">Ghost</Button>
+                    <Button variant="ghost">
+                        <Bell />
+                    </Button>
+                    <Button variant="ghost">
+                        <Settings />
+                    </Button>
+                    <Button variant="ghost">
+                        <Moon />
+                    </Button>
                     <Avatar>
                         <AvatarImage
                             src="https://github.com/shadcn.png"
