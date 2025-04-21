@@ -42,7 +42,7 @@ function ViewInvoiceButton({ invoiceId }: { invoiceId: Invoice["id"] }) {
     );
 }
 
-export const columns: ColumnDef<Invoice>[] = [
+const columns: ColumnDef<Invoice>[] = [
     {
         id: "select",
         header: ({ table }) => (

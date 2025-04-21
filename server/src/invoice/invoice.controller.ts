@@ -11,6 +11,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { InvoiceDto } from './invoice.dto';
+import { AuthRequest } from 'src/auth/auth.type';
 
 @Controller()
 export class InvoiceController {
@@ -20,7 +21,7 @@ export class InvoiceController {
 
   @UseGuards(JwtAuthGuard)
   @Get('invoices')
-  getAllInvoices(@Request() req) {
+  getAllInvoices(@Request() req: AuthRequest) {
     const userId = Number(req?.user?.sub);
     if (isNaN(userId)) {
       this.logger.error('Invalid user ID');
@@ -31,7 +32,10 @@ export class InvoiceController {
 
   @UseGuards(JwtAuthGuard)
   @Get('invoices/:id')
-  getInvoice(@Request() req, @Param('id') invoiceId: InvoiceDto['id']) {
+  getInvoice(
+    @Request() req: AuthRequest,
+    @Param('id') invoiceId: InvoiceDto['id'],
+  ) {
     const userId = Number(req?.user?.sub);
     if (isNaN(userId)) {
       this.logger.warn('Invalid user ID');

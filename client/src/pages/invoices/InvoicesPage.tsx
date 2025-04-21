@@ -5,7 +5,7 @@ import InvoicesDatatable from "@/components/InvoicesDatatable";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function InvoicesPage() {
-    const { data, isSuccess, error } = useInvoices();
+    const { data, isSuccess } = useInvoices();
     return (
         <div className="px-12 pr-8 py-12 pb-16">
             <div>

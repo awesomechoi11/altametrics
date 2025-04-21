@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -10,12 +9,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useLogin from "@/lib/hooks/useLogin";
+import { cn } from "@/lib/utils";
 
 export function LoginForm({
     className,
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-    const { mutate: login, isPending, isSuccess, error } = useLogin();
+    const { mutate: login, isPending, isSuccess } = useLogin();
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
@@ -30,12 +30,14 @@ export function LoginForm({
                 <CardContent>
                     <form
                         onSubmit={(e) => {
-                            if (isPending) return;
-                            if (isSuccess) return;
+                            e.preventDefault();
+                            if (isPending || isSuccess) return;
+
+                            const target = e.target as HTMLFormElement;
 
                             login({
-                                username: e.target.email.value,
-                                password: e.target.password.value,
+                                username: target.email.value,
+                                password: target.password.value,
                             });
 
                             e.preventDefault();
