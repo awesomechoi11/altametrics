@@ -7,7 +7,7 @@ import { RootState } from "../store/store";
 function useInvoice(invoiceId: string | undefined) {
     const token = useSelector((state: RootState) => state.auth.token);
     const query = useQuery<Invoice>({
-        queryKey: ["invoice", invoiceId],
+        queryKey: ["invoice", invoiceId, token],
         enabled: !!invoiceId,
         refetchOnMount: true,
         queryFn: async () => {

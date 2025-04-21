@@ -6,7 +6,7 @@ import { RootState } from "../store/store";
 function useInvoices() {
     const token = useSelector((state: RootState) => state.auth.token);
     const query = useQuery({
-        queryKey: ["invoices"],
+        queryKey: ["invoices", token],
         queryFn: async () => {
             const response = await axios.get("http://localhost:3000/invoices", {
                 headers: {
