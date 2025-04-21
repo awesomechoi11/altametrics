@@ -33,16 +33,16 @@ export class InvoiceController {
   getInvoice(@Request() req, @Param('id') invoiceId: InvoiceDto['id']) {
     const userId = Number(req?.user?.sub);
     if (isNaN(userId)) {
-      this.logger.error('Invalid user ID');
+      this.logger.warn('Invalid user ID');
       throw new HttpException('Invalid user ID', HttpStatus.UNAUTHORIZED);
     }
 
     if (isNaN(Number(invoiceId))) {
-      this.logger.error('Invalid invoice ID');
+      this.logger.warn('Invalid invoice ID');
       throw new HttpException('Invalid invoice ID', HttpStatus.BAD_REQUEST);
     }
     if (Number(invoiceId) <= 0) {
-      this.logger.error('Invoice ID must be greater than 0');
+      this.logger.warn('Invoice ID must be greater than 0');
       throw new HttpException(
         'Invoice ID must be greater than 0',
         HttpStatus.BAD_REQUEST,
