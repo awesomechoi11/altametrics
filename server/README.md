@@ -14,10 +14,16 @@ Make sure the postgres database is running. In the root directory, run
 docker compose up -d db
 ```
 
-Then generate the schema
+Then migrate the database
 
 ```bash
-npx prisma generate
+npx prisma migrate deploy
+```
+
+Seed the database
+
+```bash
+ts-node prisma/seed.ts
 ```
 
 ## Run the project
