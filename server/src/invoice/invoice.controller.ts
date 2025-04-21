@@ -24,6 +24,7 @@ export class InvoiceController {
     const userId = Number(req?.user?.sub);
     if (isNaN(userId)) {
       this.logger.error('Invalid user ID');
+      throw new HttpException('Invalid user ID', HttpStatus.UNAUTHORIZED);
     }
     return this.invoiceService.getAllInvoicesByUserId(userId);
   }
