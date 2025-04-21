@@ -22,7 +22,7 @@ export class AuthService {
 
   login(user: { email: string; id: number }) {
     this.logger.verbose(`Logging in user: ${JSON.stringify(user)}`);
-    const payload = { email: user.email, sub: user.id };
+    const payload = { email: user.email, id: user.id };
     return {
       access_token: this.jwtService.sign(payload),
     };

@@ -22,9 +22,9 @@ export class InvoiceController {
   @UseGuards(JwtAuthGuard)
   @Get('invoices')
   getAllInvoices(@Request() req: AuthRequest) {
-    const userId = Number(req?.user?.sub);
+    const userId = Number(req?.user?.id);
     if (isNaN(userId)) {
-      this.logger.error('Invalid user ID');
+      this.logger.error('Invalid user ID ', req?.user?.id);
       throw new HttpException('Invalid user ID', HttpStatus.UNAUTHORIZED);
     }
     return this.invoiceService.getAllInvoicesByUserId(userId);
@@ -36,9 +36,9 @@ export class InvoiceController {
     @Request() req: AuthRequest,
     @Param('id') invoiceId: InvoiceDto['id'],
   ) {
-    const userId = Number(req?.user?.sub);
+    const userId = Number(req?.user?.id);
     if (isNaN(userId)) {
-      this.logger.warn('Invalid user ID');
+      this.logger.warn('Invalid user ID', req?.user?.id);
       throw new HttpException('Invalid user ID', HttpStatus.UNAUTHORIZED);
     }
 
