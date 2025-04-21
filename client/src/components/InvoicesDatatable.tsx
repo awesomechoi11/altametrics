@@ -85,7 +85,9 @@ export const columns: ColumnDef<Invoice>[] = [
         accessorKey: "description",
         header: "Description",
         cell: ({ row }) => (
-            <div className="lowercase">{row.getValue("description")}</div>
+            <div className="lowercase text-ellipsis">
+                {row.getValue("description")}
+            </div>
         ),
         enableSorting: false,
     },
@@ -191,8 +193,8 @@ function InvoicesDatatable({ data }: { data: Invoices }) {
         },
     });
     return (
-        <div className="">
-            <div className="w-full">
+        <div>
+            <div>
                 <div className="rounded-md border">
                     <Table>
                         <TableHeader>
