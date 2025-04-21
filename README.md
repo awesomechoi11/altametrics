@@ -11,6 +11,8 @@ git clone https://github.com/awesomechoi11/altametrics.git
 cd altametrics
 ```
 
+Now you can continue here to build a live demo or goto the readme's for client and server for detailed view of the dev enviornments.
+
 ## Build containers
 
 ```bash
