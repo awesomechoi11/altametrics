@@ -11,6 +11,13 @@ git clone https://github.com/awesomechoi11/altametrics.git
 cd altametrics
 ```
 
+## Add .env into the root directory
+
+```
+DATABASE_URL="postgres://pguser:pgpass@localhost:5432/pgdb?connection_limit=1&pool_timeout=5&connect_timeout=5&sslmode=prefer"
+JWT_SECRET="really-long-secret-here "
+```
+
 Now you can continue here to build a live demo or goto the readme's for client and server for detailed view of the dev enviornments.
 
 ## Build containers
