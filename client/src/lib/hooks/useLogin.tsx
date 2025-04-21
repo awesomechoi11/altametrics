@@ -26,7 +26,6 @@ export default function useLogin() {
             return response.data;
         },
         onSuccess: (data) => {
-            console.log("success", data);
             dispatch(setToken(data.access_token));
             localStorage.setItem("access_token", data.access_token);
             navigate("/dashboard/invoices");

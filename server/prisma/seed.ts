@@ -1,60 +1,62 @@
 import { PrismaClient } from '@prisma/client';
+import { faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
 
+interface invoice {
+  vendor_name: string;
+  amount: string;
+  due_date: Date;
+  description: string;
+  paid: boolean;
+}
+
+function generateInvoices() {
+  const invoiceCount = faker.number.int({ min: 100, max: 150 });
+  const invoices: invoice[] = [];
+  for (let i = 0; i < invoiceCount; i++) {
+    const invoice = {
+      vendor_name: faker.company.name(),
+      amount: faker.finance.amount({
+        min: 50,
+        max: 5000,
+        dec: 2,
+      }),
+      due_date: faker.date.future(),
+      description: faker.commerce.productDescription(),
+      paid: faker.datatype.boolean(),
+    };
+    invoices.push(invoice);
+  }
+  return invoices;
+}
+
 async function main() {
-  const alice = await prisma.user.upsert({
-    where: { email: 'alice@prisma.io' },
+  await prisma.invoice.deleteMany();
+  await prisma.user.deleteMany();
+
+  await prisma.user.upsert({
+    where: { email: 'alice@altametrics.com' },
     update: {},
     create: {
-      email: 'alice@prisma.io',
+      email: 'alice@altametrics.com',
       name: 'Alice',
       password: 'securepassword123',
       Invoice: {
-        create: [
-          {
-            vendor_name: 'Acme Supplies',
-            amount: '250.00',
-            due_date: new Date('2025-06-15T00:00:00.000Z'),
-            description: 'Office chairs purchase',
-            paid: false,
-          },
-          {
-            vendor_name: 'Global Hosting',
-            amount: '75.50',
-            due_date: new Date('2025-05-01T00:00:00.000Z'),
-            description: 'Monthly server hosting',
-            paid: true,
-          },
-        ],
+        create: generateInvoices(),
       },
     },
   });
 
-  const bob = await prisma.user.upsert({
-    where: { email: 'bob@prisma.io' },
+  await prisma.user.upsert({
+    where: { email: 'bob@altametrics.com' },
     update: {},
     create: {
-      email: 'bob@prisma.io',
+      email: 'bob@altametrics.com',
       name: 'Bob',
       password: 'anotherSecureP@ss',
       Invoice: {
-        create: [
-          {
-            vendor_name: 'Zenith Consulting',
-            amount: '1200.00',
-            due_date: new Date('2025-07-01T00:00:00.000Z'),
-            description: 'Quarterly consulting fee',
-            paid: false,
-          },
-          {
-            vendor_name: 'Bright Marketing',
-            amount: '450.25',
-            due_date: new Date('2025-05-20T00:00:00.000Z'),
-            description: 'Social media campaign',
-            paid: false,
-          },
-        ],
+        create: generateInvoices(),
       },
     },
   });

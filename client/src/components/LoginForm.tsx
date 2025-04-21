@@ -16,7 +16,6 @@ export function LoginForm({
     ...props
 }: React.ComponentPropsWithoutRef<"div">) {
     const { mutate: login, isPending, isSuccess, error } = useLogin();
-    console.log(error);
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
@@ -50,7 +49,7 @@ export function LoginForm({
                                     id="email"
                                     type="email"
                                     placeholder="m@example.com"
-                                    defaultValue={"alice@prisma.io"}
+                                    defaultValue={"alice@altametrics.com"}
                                     required
                                 />
                             </div>

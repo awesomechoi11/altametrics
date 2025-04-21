@@ -28,7 +28,7 @@ import { Bean } from "./ui/bean";
 function InvoicesDialog() {
     const params = useParams();
     const invoiceId = params.invoiceId as string;
-    const { data, isSuccess } = useInvoice(invoiceId);
+    const { data, isSuccess, isError, isPending } = useInvoice(invoiceId);
     const navigate = useNavigate();
     const handleClose = () => {
         navigate("/dashboard/invoices");
@@ -45,15 +45,22 @@ function InvoicesDialog() {
                         A detailed view of your invoice.
                     </DialogDescription>
                 </DialogHeader>
-                {isSuccess ? (
-                    <InvoiceTable invoice={data[0]} />
-                ) : (
+                {isPending ? (
                     <ClipLoader />
+                ) : (
+                    <>
+                        {isSuccess && !!data && <InvoiceTable invoice={data} />}
+                        {isError && <div>Error while fetching data</div>}
+                        {isSuccess && !isError && !data && (
+                            <div className="text-center text-lg font-semibold text-gray-500 dark:text-gray-400">
+                                No invoice found with this id
+                            </div>
+                        )}
+                    </>
                 )}
+
                 <DialogFooter>
-                    <Close>
-                        <Button>Close</Button>
-                    </Close>
+                    <Close>Close</Close>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

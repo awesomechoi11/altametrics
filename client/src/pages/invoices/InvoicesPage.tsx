@@ -6,7 +6,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function InvoicesPage() {
     const { data, isSuccess, error } = useInvoices();
-    console.log(data, isSuccess, error);
     return (
         <div className="px-12 pr-8 py-12 pb-16">
             <div>
