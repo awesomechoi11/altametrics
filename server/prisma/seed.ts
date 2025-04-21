@@ -32,8 +32,16 @@ function generateInvoices() {
 }
 
 async function main() {
-  await prisma.invoice.deleteMany();
-  await prisma.user.deleteMany();
+  try {
+    await prisma.invoice.deleteMany({});
+  } catch (e) {
+    console.warn('failed to delete invoices – table may not exist yet');
+  }
+  try {
+    await prisma.user.deleteMany({});
+  } catch (e) {
+    console.warn('failed to delete users – table may not exist yet');
+  }
 
   await prisma.user.upsert({
     where: { email: 'alice@altametrics.com' },
