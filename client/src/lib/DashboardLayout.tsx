@@ -7,7 +7,7 @@ function DashboardLayout() {
     return (
         <SidebarProvider defaultOpen={true}>
             <AppSidebar />
-            <div className="w-full">
+            <div className="flex flex-col w-full h-screen overflow-hidden">
                 <DashboardNavbar />
                 <div>
                     <Outlet />
