@@ -8,7 +8,7 @@ import store from "./lib/store/store.ts";
 import { BrowserRouter, Route, Routes } from "react-router";
 import InvoicesPage from "./pages/invoices/InvoicesPage.tsx";
 import InvoicesDialog from "./components/InvoicesDialog.tsx";
-import DashboardLayout from "./lib/DashboardLayout.tsx";
+import DashboardLayout from "./components/DashboardLayout.tsx";
 
 const queryClient = new QueryClient({
     defaultOptions: {
