@@ -1,6 +1,8 @@
 # Use the official Node.js image as the base image
 FROM node:23-slim
 
+RUN apt-get update -y && apt-get install -y openssl
+
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
