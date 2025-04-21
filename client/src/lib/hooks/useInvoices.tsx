@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Auth } from "../types";
+import { RootState } from "../store/store";
 
 function useInvoices() {
-    const token = useSelector((state) => state.auth.token);
+    const token = useSelector((state: RootState) => state.auth.token);
     const query = useQuery({
         queryKey: ["invoices"],
         queryFn: async () => {

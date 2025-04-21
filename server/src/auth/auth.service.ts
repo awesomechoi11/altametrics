@@ -15,13 +15,12 @@ export class AuthService {
     this.logger.verbose(`Validating user: ${email}`);
     const user = await this.usersService.findOne(email);
     if (user && user.password === pass) {
-      const { password, ...result } = user;
-      return result;
+      return user;
     }
     return null;
   }
 
-  async login(user: any) {
+  login(user: { email: string; id: number }) {
     this.logger.verbose(`Logging in user: ${JSON.stringify(user)}`);
     const payload = { email: user.email, sub: user.id };
     return {
